@@ -1,0 +1,47 @@
+{% set version = "2.2.0" %}
+
+package:
+  name: laszip
+  version: {{ version }}
+
+source:
+  url: https://github.com/LASzip/LASzip/archive/v{{ version }}.tar.gz
+  sha256: b8e8cc295f764b9d402bc587f3aac67c83ed8b39f1cb686b07c168579c61fbb2
+  fn: LASzip-{{ version }}.tar.gz
+  patches:
+    - 0001-nix-osgeo4w-packaging.patch
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - m2-patch  # [win]
+    - cmake
+  host:
+
+test:
+  commands:
+    - laszippertest
+
+about:
+  home: https://laszip.org/
+  license: LGPL-2.0
+  license_family: GPL
+  license_file: COPYING
+  summary: Turns bulky LAS files into compact LAZ files without information loss.
+  description: |
+     The LGPL-licensed LASzip library is easiest integrated via the DLL that is
+     in the LASzip subdirectory of the LAStools distribtion. Other options are
+     to link LASzip via the BSD-licensed libLAS library or to work with the
+     LASlib library which fully integrates and enhances the LASzip codebase with
+     spatial indexing, filters, transforms, geo-referencing, ... of LAS and LAZ
+     files.
+  dev_url: https://github.com/LASzip/LASzip
+  doc_url: https://laszip.org/
+
+extra:
+  recipe-maintainers:
+    - dakcarto
