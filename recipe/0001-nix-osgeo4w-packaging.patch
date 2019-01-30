@@ -4,7 +4,7 @@ index 785d4e4..923b92b 100644
 +++ b/CMakeLists.txt
 @@ -153,7 +153,3 @@ list(APPEND CPACK_SOURCE_IGNORE_FILES ".gitignore")
  include(CPack)
- 
+
  add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
 -
 -if (WIN32)

@@ -12,13 +12,14 @@ source:
     - 0001-nix-osgeo4w-packaging.patch
 
 build:
-  number: 1
+  number: 1000
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
+    - m2-patch  # [win]
   host:
 
 test:
